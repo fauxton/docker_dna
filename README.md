@@ -1,3 +1,5 @@
+![Travis CI Status](https://travis-ci.org/fauxton/docker_dna.svg)
+
 DockerDna
 =========
 
