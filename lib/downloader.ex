@@ -11,7 +11,7 @@ defmodule DockerDna.Downloader do
       response = image |> download_url |> get!
       response.body |> Poison.decode!
     rescue
-      exception ->
+      _exception ->
         DockerDna.Utils.status("Unable to download image (#{image}).")
     end
   end

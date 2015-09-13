@@ -27,6 +27,9 @@ config :text,
       This will trace all dependencies for the given hub image,
       creating a new file called Dockerfile.dna.
 
+      FLAGS:
+      -o Specify filename of exported Dockerfile
+
       NOTE: A hub image must be a valid image found on hub.docker.com.
   """
 # It is also possible to import configuration files, relative to this

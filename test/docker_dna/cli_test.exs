@@ -18,20 +18,20 @@ defmodule DockerDnaCLITest do
   end
 
   test "extracts passed image as arg" do
-    assert parse_args(["msaraiva/elixir"]) == {:reassemble, "msaraiva/elixir"}
-    assert parse_args(["foobar"]) == {:reassemble, "foobar"}
+    assert parse_args(["msaraiva/elixir"]) == {:reassemble, "msaraiva/elixir", []}
+    assert parse_args(["foobar"]) == {:reassemble, "foobar", []}
   end
 
   test "shows error message when image format invalid" do
     assert capture_io(fn ->
-      DockerDna.CLI.process({:reassemble, "foobar"})
+      DockerDna.CLI.process({:reassemble, "foobar", []})
     end) == "Bad Dockerfile!"<>"\n"
   end
 
   test "reassembles image when image format valid" do
-    with_mock DockerDna, [reassemble: fn(_image) -> true end] do
-      DockerDna.CLI.process({:reassemble, "foo/bar"})
-      assert called DockerDna.reassemble("foo/bar")
+    with_mock DockerDna, [reassemble: fn(_image, _options) -> true end] do
+      DockerDna.CLI.process({:reassemble, "foo/bar", []})
+      assert called DockerDna.reassemble("foo/bar", [])
     end
   end
 end

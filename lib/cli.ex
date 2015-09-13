@@ -14,11 +14,11 @@ defmodule DockerDna.CLI do
     IO.puts Application.get_env(:text, :help)
   end
 
-  def process({:reassemble, image}) when is_binary(image) do
+  def process({:reassemble, image, options}) when is_binary(image) do
     if Regex.match?(~r/.*\/.*/, image) do
       Utils.status "Reassembling Dockerfile!"
       DockerDna.Ancestry.start_link
-      DockerDna.reassemble(image)
+      DockerDna.reassemble(image, options)
     else
       IO.puts "Bad Dockerfile!"
     end
@@ -28,7 +28,7 @@ defmodule DockerDna.CLI do
     options = OptionParser.parse(args)
     case options do
       {[help: true], _, _} -> :help
-      {[], [image], _} -> {:reassemble, image}
+      {[], [image], options} -> {:reassemble, image, options}
       _ -> :help
     end
   end
