@@ -22,7 +22,7 @@ config :text,
 
       It's really easy to use, viz:
 
-      docker_dna msaraiva/elixir > Dockerfile.dna
+      docker_dna msaraiva/elixir
 
       This will trace all dependencies for the given hub image,
       creating a new file called Dockerfile.dna.
