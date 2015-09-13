@@ -17,14 +17,15 @@ use Mix.Config
 
 config :text,
   help: """
-      Docker DNA gives you your own reassembled version of a hub image's ancestry.
+      Docker DNA gives you your own reassembled version of a hub image's
+      ancestry.
 
       It's really easy to use, viz:
 
       docker_dna msaraiva/elixir > Dockerfile.dna
 
-      This will trace all dependencies for the given hub image, creating a new file
-      called Dockerfile.dna.
+      This will trace all dependencies for the given hub image,
+      creating a new file called Dockerfile.dna.
 
       NOTE: A hub image must be a valid image found on hub.docker.com.
   """

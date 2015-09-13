@@ -12,7 +12,7 @@ defmodule DockerDnaCLITest do
   end
 
   test "shows help message" do
-    assert capture_io(fn -> 
+    assert capture_io(fn ->
       DockerDna.CLI.process(:help)
     end) == Application.get_env(:text, :help)<>"\n"
   end
@@ -23,8 +23,8 @@ defmodule DockerDnaCLITest do
   end
 
   test "shows error message when image format invalid" do
-    assert capture_io(fn -> 
-      DockerDna.CLI.process({:reassemble, "foobar"}) 
+    assert capture_io(fn ->
+      DockerDna.CLI.process({:reassemble, "foobar"})
     end) == "Bad Dockerfile!"<>"\n"
   end
 

@@ -1,6 +1,11 @@
 defmodule DockerDna.CLI do
   alias DockerDna.Utils
 
+  @moduledoc """
+  CLI handles command line parsing and delegation
+  of business logic to other application modules.
+  """
+
   def main(args) do
     args |> parse_args |> process
   end

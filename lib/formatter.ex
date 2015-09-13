@@ -1,4 +1,12 @@
 defmodule DockerDna.Formatter do
+  @moduledoc """
+  Formats the contents of a collection of Dockerfiles
+  in preparation for export. Strips lines that should
+  be unique within a single Dockerfile, such as
+  FROM, as well as removes some noise for added
+  readability
+  """
+
   def format!(dockerfiles) when is_list(dockerfiles) do
     last = Enum.count(dockerfiles) - 1
     dockerfiles |> Enum.with_index |> Enum.map(fn(f) ->
