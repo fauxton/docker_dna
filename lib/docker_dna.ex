@@ -1,33 +1,31 @@
 defmodule DockerDna do
-  use HTTPoison.Base
+  alias DockerDna.Ancestry
+  alias DockerDna.Downloader
+  alias DockerDna.Exporter
 
-  def reassemble(image) do
-    image
-      |> download_dockerfile 
-      |> sanitize_contents 
-      |> write_to_dockerfile
+  def reassemble(nil), do: Exporter.export!
+
+  def reassemble(image) when is_binary(image) do
+    case image |> Downloader.download do
+      %{"contents" => dockerfile } ->
+        dockerfile
+          |> add_to_family_tree
+          |> find_ancestor
+          |> reassemble
+      _ -> false
+    end
+  end
+
+  def add_to_family_tree(dockerfile) do
+    Ancestry.add_ancestor(dockerfile)
+    dockerfile
   end
 
   def find_ancestor(dockerfile) do
-    %{"ancestor" => ancestor} = Regex.named_captures(~r/FROM (?<ancestor>.*\/.*):/, dockerfile)
-    ancestor
-  end
-
-  def sanitize_contents(response) do
-    json = response.body |> Poison.decode!
-    json["contents"]
-  end
-
-  def write_to_dockerfile(contents) do
-    {:ok, dockerfile} = File.open "Dockerfile.dna", [:write, :utf8]
-    IO.write dockerfile, contents
-  end
-
-  def download_dockerfile(image) do
-    image |> download_url |> get!
-  end
-
-  defp download_url(image) do
-    "https://hub.docker.com/v2/repositories/#{image}/dockerfile/"
+    # This currently ignores tags, i.e. author/image:tag
+    case Regex.named_captures(~r/FROM (?<ancestor>.*\/.*):/, dockerfile) do
+      %{"ancestor" => ancestor} -> ancestor
+      nil -> nil
+    end
   end
 end

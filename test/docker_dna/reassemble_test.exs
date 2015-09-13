@@ -11,17 +11,20 @@ defmodule DockerDnaReassemblerTest do
       url: "https://hub.docker.com/v2/repositories/msaraiva/elixir/dockerfile/", 
       body: @mock_dockerfile_response
     ] do
-      response = DockerDna.download_dockerfile("msaraiva/elixir")
-      assert response.body == @mock_dockerfile_response
+      assert DockerDna.Downloader.download("msaraiva/elixir") == :ok
     end
   end
 
-  @dockerfile """
+  @unofficial """
   FROM msaraiva/erlang:17.5
-  
   MAINTAINER Marlus Saraiva <Marlus.saraiva@gmail.com>
   """
+  @official """
+  FROM alpine:3.2
+  MAINTAINER Marlus Saraiva <marlus.saraiva@gmail.com>
+  """
   test "finds ancestor within returned Dockerfile" do
-    assert DockerDna.find_ancestor(@dockerfile) == "msaraiva/erlang"
+    assert DockerDna.find_ancestor(@unofficial) == "msaraiva/erlang"
+    assert DockerDna.find_ancestor(@official) == nil
   end
 end

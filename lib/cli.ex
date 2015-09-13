@@ -1,4 +1,6 @@
 defmodule DockerDna.CLI do
+  alias DockerDna.Utils
+
   def main(args) do
     args |> parse_args |> process
   end
@@ -9,7 +11,8 @@ defmodule DockerDna.CLI do
 
   def process({:reassemble, image}) when is_binary(image) do
     if Regex.match?(~r/.*\/.*/, image) do
-      IO.puts "Reassembling Dockerfile!"
+      Utils.status "Reassembling Dockerfile!"
+      DockerDna.Ancestry.start_link
       DockerDna.reassemble(image)
     else
       IO.puts "Bad Dockerfile!"
