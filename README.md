@@ -21,10 +21,22 @@ like to use:
 $ ./docker_dna <user>/<image>
 ```
 
-This will generate a file called `Dockerfile.dna`.  You can then use that file to build/run a Docker
+By default, this will generate a file called `Dockerfile.dna`.  You can then use that file to build/run a Docker
 container like so:
 
 ```bash
 $ docker build -t my_awesome_image -f Dockerfile.dna .
 $ docker run my_awesome_image
 ```
+
+## Flags
+
+To override the default filename, you can pass the `-o` flag:
+
+```bash
+$ ./docker_dna <user>/<image> -o MyCustomDockerFile
+```
+
+# Caveats
+
+Docker image tags are currently unsupported.  The assumption is that the latest version of a given ancestor should be used.
