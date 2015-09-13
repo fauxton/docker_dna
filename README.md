@@ -12,3 +12,11 @@ a new Dockerfile by tracing the ancestors of a given repository image and concat
 
 The result is a Dockerfile that you are in total control of and whose source is in a single place
 (not spread across repos/hub pages).
+
+# Usage
+To generate a Dockerfile, simply invoke the included binary with the name of the image you'd
+like to use:
+
+```bash
+$ ./docker_dna <user>/<image>
+```
