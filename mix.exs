@@ -20,7 +20,8 @@ defmodule DockerDna.Mixfile do
       {:mock, "~> 0.1", only: :test},
       {:exvcr, "~> 0.5", only: :test},
       {:httpoison, "~> 0.7.2"},
-      {:poison, "~> 1.5"}
+      {:poison, "~> 1.5"},
+      {:dogma, "~> 0.0", only: :dev}
     ]
   end
 end
