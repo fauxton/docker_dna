@@ -20,3 +20,11 @@ like to use:
 ```bash
 $ ./docker_dna <user>/<image>
 ```
+
+This will generate a file called `Dockerfile.dna`.  You can then use that file to build/run a Docker
+container like so:
+
+```bash
+$ docker build -t my_awesome_image -f Dockerfile.dna .
+$ docker run my_awesome_image
+```
