@@ -1,0 +1,9 @@
+language: elixir
+env: MIX_ENV=test
+notifications:
+  recipients:
+    - code@fauxton.io
+elixir:
+- 1.0.5
+otp_release:
+  - 18.0
