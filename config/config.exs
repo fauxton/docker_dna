@@ -15,7 +15,7 @@ use Mix.Config
 #       format: "$date $time [$level] $metadata$message\n",
 #       metadata: [:user_id]
 
-config :text,
+config :docker_dna,
   help: """
       Docker DNA gives you your own reassembled version of a hub image's
       ancestry.
@@ -32,6 +32,7 @@ config :text,
 
       NOTE: A hub image must be a valid image found on hub.docker.com.
   """
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.

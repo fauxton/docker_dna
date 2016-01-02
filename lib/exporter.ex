@@ -10,7 +10,7 @@ defmodule DockerDna.Exporter do
     {:ok, dockerfile} =
       options
         |> dockerfile_src
-        |> File.open [:write, :utf8]
+        |> File.open([:write, :utf8])
     IO.write dockerfile, content
   end
 

@@ -11,7 +11,7 @@ defmodule DockerDna.CLI do
   end
 
   def process(:help) do
-    IO.puts Application.get_env(:text, :help)
+    IO.puts Application.get_env(:docker_dna, :help)
   end
 
   def process({:reassemble, image, options}) when is_binary(image) do

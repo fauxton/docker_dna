@@ -14,7 +14,7 @@ defmodule DockerDnaCLITest do
   test "shows help message" do
     assert capture_io(fn ->
       DockerDna.CLI.process(:help)
-    end) == Application.get_env(:text, :help)<>"\n"
+    end) == Application.get_env(:docker_dna, :help)<>"\n"
   end
 
   test "extracts passed image as arg" do
