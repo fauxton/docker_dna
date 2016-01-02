@@ -4,7 +4,7 @@ defmodule DockerDna.Mixfile do
   def project do
     [app: :docker_dna,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.0",
      escript: [main_module: DockerDna.CLI],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
