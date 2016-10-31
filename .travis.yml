@@ -4,8 +4,6 @@ notifications:
   recipients:
     - code@fauxton.io
 elixir:
-- 1.0.5
-- 1.1.0
 - 1.2.0
 - 1.3.0
 otp_release:
