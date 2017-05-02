@@ -8,7 +8,7 @@ defmodule DockerDna.Mixfile do
      escript: [main_module: DockerDna.CLI],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
