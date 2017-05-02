@@ -18,9 +18,9 @@ defmodule DockerDna.Mixfile do
   defp deps do
     [
       {:mock, "~> 0.1", only: :test},
-      {:exvcr, "~> 0.5", only: :test},
-      {:httpoison, "~> 0.7.2"},
-      {:poison, "~> 1.5"},
+      {:exvcr, "~> 0.8", only: :test},
+      {:httpoison, "~> 0.11"},
+      {:poison, "~> 3.0"},
       {:credo, "~> 0.7", only: [:dev, :test]}
     ]
   end
