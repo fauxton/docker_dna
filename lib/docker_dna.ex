@@ -14,7 +14,7 @@ defmodule DockerDna do
 
   def reassemble(image, options) when is_binary(image) do
     case image |> Downloader.download do
-      %{"contents" => dockerfile } ->
+      %{"contents" => dockerfile} ->
         dockerfile
           |> Ancestry.add_ancestor
           |> Ancestry.find_next_ancestor
