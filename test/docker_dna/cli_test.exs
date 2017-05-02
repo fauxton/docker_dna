@@ -30,8 +30,10 @@ defmodule DockerDnaCLITest do
 
   test "reassembles image when image format valid" do
     with_mock DockerDna, [reassemble: fn(_image, _options) -> true end] do
-      DockerDna.CLI.process({:reassemble, "foo/bar", []})
-      assert called DockerDna.reassemble("foo/bar", [])
+      assert capture_io(fn ->
+        DockerDna.CLI.process({:reassemble, "foo/bar", []})
+        assert called DockerDna.reassemble("foo/bar", [])
+      end) == "Reassembling Dockerfile!\n"
     end
   end
 end
